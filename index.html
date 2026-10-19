@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harriet Omeny — Social Media Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAF7;--surface:#fff;--ink:#18181B;--muted:#71717A;
+  --accent:#C2410C;--line:#E7E5E0;--max:1040px;
+  --serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}ul{list-style:none}button{font:inherit;cursor:pointer;border:none;background:none}
+.container{max-width:var(--max);margin:0 auto;padding:0 32px}
+section{padding:96px 0}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,247,.85);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.scrolled{border-bottom-color:var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font:500 18px var(--serif);letter-spacing:-.02em}
+.nav-links{display:flex;gap:4px}
+.nav-links a{padding:8px 14px;font-size:14px;font-weight:500;color:var(--muted);border-radius:6px;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--accent)}
+.nav-toggle{display:none;font-size:20px;color:var(--ink)}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--bg);padding:16px 32px;border-bottom:1px solid var(--line);gap:8px}
+  .nav-toggle{display:block}
+}
+
+/* hero */
+.hero{padding-top:140px;min-height:88vh;display:flex;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--muted);margin-bottom:28px}
+.hero-eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:#22c55e}
+.hero h1{font:500 clamp(2.4rem,6vw,4.2rem)/1.12 var(--serif);letter-spacing:-.03em;margin-bottom:24px;max-width:18ch}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:18px;color:var(--muted);max-width:52ch;margin-bottom:40px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font:500 15px var(--sans);border-radius:8px;transition:transform .15s,background .2s,border-color .2s}
+.btn-primary{background:var(--ink);color:var(--bg)}
+.btn-primary:hover{background:var(--accent)}
+.btn-outline{border:1px solid var(--line);color:var(--ink)}
+.btn-outline:hover{border-color:var(--ink)}
+
+/* section heads */
+.section-head{margin-bottom:48px}
+.section-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:12px}
+.section-title{font:500 clamp(1.8rem,4vw,2.8rem)/1.15 var(--serif);letter-spacing:-.02em}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:64px}
+.about-bio p{margin-bottom:18px;color:var(--muted)}
+.about-bio p:first-child{color:var(--ink);font-size:18px;line-height:1.6}
+.about-sidebar{display:flex;flex-direction:column;gap:28px}
+.about-fact h4{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+.about-fact p{font-size:15px}
+.about-chips{display:flex;flex-wrap:wrap;gap:6px}
+.about-chip{padding:3px 12px;border:1px solid var(--line);border-radius:99px;font-size:13px}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:40px}}
+
+/* experience */
+.exp-list{display:flex;flex-direction:column}
+.exp-item{padding:28px 0;border-top:1px solid var(--line)}
+.exp-item:last-child{border-bottom:1px solid var(--line)}
+.exp-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:6px;flex-wrap:wrap}
+.exp-role{font:500 19px var(--serif);letter-spacing:-.01em}
+.exp-date{font-size:14px;color:var(--muted);white-space:nowrap}
+.exp-org{font-size:15px;color:var(--muted);margin-bottom:12px}
+.exp-bullets{display:flex;flex-direction:column;gap:5px}
+.exp-bullets li{font-size:15px;color:var(--muted);padding-left:22px;position:relative}
+.exp-bullets li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:600}
+
+/* results */
+.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.result{padding:24px 0}
+.result-num{font:500 clamp(2.2rem,5vw,3.2rem)/1 var(--serif);letter-spacing:-.03em;color:var(--accent);margin-bottom:8px}
+.result-label{font-size:14px;color:var(--muted);max-width:18ch}
+@media(max-width:768px){.results-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* work */
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.work-item{border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:transform .2s,border-color .2s}
+.work-item:hover{transform:translateY(-3px);border-color:var(--ink)}
+.work-thumb{aspect-ratio:4/3;display:grid;place-items:center;background:var(--surface);position:relative}
+.work-tag{position:absolute;top:12px;left:12px;font-size:12px;font-weight:500;padding:3px 10px;border:1px solid var(--line);border-radius:99px;background:var(--bg)}
+.work-icon{font-size:22px;color:var(--muted)}
+.work-meta{padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
+.work-meta h4{font-size:14px;font-weight:500}
+.work-meta span{font-size:13px;color:var(--accent)}
+@media(max-width:768px){.work-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.work-grid{grid-template-columns:1fr}}
+
+/* skills */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
+.skill-group h4{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.skill-group ul{display:flex;flex-direction:column;gap:10px}
+.skill-group li{font-size:15px}
+@media(max-width:768px){.skills-grid{grid-template-columns:1fr;gap:32px}}
+
+/* education & refs */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px}
+.edu-item{padding:24px;border:1px solid var(--line);border-radius:10px}
+.edu-item h4{font:500 17px var(--serif);margin-bottom:6px}
+.edu-item p{font-size:14px;color:var(--muted)}
+@media(max-width:640px){.edu-grid{grid-template-columns:1fr}}
+.refs-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ref-item{padding:16px 0}
+.ref-item b{display:block;font-weight:500;font-size:15px}
+.ref-item span{font-size:14px;color:var(--muted);display:block}
+.ref-item a{font-size:14px;color:var(--accent)}
+
+/* contact */
+.contact{text-align:center;padding:120px 0}
+.contact h2{font:500 clamp(2.2rem,6vw,3.8rem)/1.1 var(--serif);letter-spacing:-.03em;margin-bottom:16px}
+.contact h2 em{font-style:italic;color:var(--accent)}
+.contact>p{font-size:18px;color:var(--muted);margin-bottom:48px}
+.contact-links{display:flex;flex-direction:column;gap:16px;align-items:center}
+.contact-link{font:500 22px var(--serif);transition:color .2s}
+.contact-link:hover{color:var(--accent)}
+.contact-meta{margin-top:32px;font-size:14px;color:var(--muted)}
+
+/* footer */
+footer{padding:40px 0;border-top:1px solid var(--line)}
+footer p{font-size:13px;color:var(--muted);text-align:center}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="nav-logo">Harriet Omeny</a>
+    <button class="nav-toggle" id="navToggle">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#results">Results</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-eyebrow">Available for work · Nairobi, Kenya</div>
+    <h1>I build social media that <em>actually grows</em> your brand.</h1>
+    <p class="hero-sub">Social media manager and content strategist. I create content, grow communities, and turn followers into customers.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn btn-primary">View my work →</a>
+      <a href="#contact" class="btn btn-outline">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">About</div>
+      <h2 class="section-title">The person behind the content.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-bio">
+        <p>I'm a social media manager and digital marketing specialist based in Nairobi. I work with brands across healthcare, retail, and services to build presence, grow audiences, and drive measurable results.</p>
+        <p>My approach is straightforward: understand the brand, create content that resonates, engage with the community, and track what works. I've grown Instagram followings by over 500%, created viral video content for hospital events, and contributed to a 91% increase in online sales.</p>
+        <p>Before social media, I worked in customer success and field marketing, running brand activations for Blueband, Always, and Nestlé. That ground-level experience shapes how I think about content: it's not just about likes, it's about real people and real business outcomes.</p>
+      </div>
+      <div class="about-sidebar">
+        <div class="about-fact">
+          <h4>Currently</h4>
+          <p>Social Media Manager Consultant at Fagi Errands Service Limited</p>
+        </div>
+        <div class="about-fact">
+          <h4>Based in</h4>
+          <p>Nairobi, Kenya</p>
+        </div>
+        <div class="about-fact">
+          <h4>Industries</h4>
+          <div class="about-chips">
+            <span class="about-chip">Healthcare</span>
+            <span class="about-chip">Retail</span>
+            <span class="about-chip">Services</span>
+          </div>
+        </div>
+        <div class="about-fact">
+          <h4>Education</h4>
+          <p>BA Psychology & International Relations, University of Nairobi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Experience</div>
+      <h2 class="section-title">Five roles, one focus.</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-head">
+          <h3 class="exp-role">Social Media Manager Consultant</h3>
+          <span class="exp-date">Mar 2026 — Present</span>
+        </div>
+        <p class="exp-org">Fagi Errands Service Limited · Freelance</p>
+        <ul class="exp-bullets">
+          <li>Develop content strategies for brand awareness, audience growth, and customer engagement</li>
+          <li>Create, schedule, and manage posts, captions, and promotional creatives</li>
+          <li>Monitor performance and recommend strategies to improve engagement</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-head">
+          <h3 class="exp-role">Social Media & Marketing Officer</h3>
+          <span class="exp-date">Sep 2025 — Mar 2026</span>
+        </div>
+        <p class="exp-org">Jacaranda Maternity and Family Hospital</p>
+        <ul class="exp-bullets">
+          <li>Managed social platforms through content creation, planning, and digital campaigns</li>
+          <li>Created viral video content for hospital events and community outreach</li>
+          <li>Managed online communication and customer engagement</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-head">
+          <h3 class="exp-role">Customer Success Intern</h3>
+          <span class="exp-date">Mar — Sep 2024</span>
+        </div>
+        <p class="exp-org">Kladika Company</p>
+        <ul class="exp-bullets">
+          <li>Supported customer communication and online engagement</li>
+          <li>Gathered customer feedback to support communication strategies</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-head">
+          <h3 class="exp-role">Social Media Manager & Sales Associate</h3>
+          <span class="exp-date">Mar 2022 — Dec 2024</span>
+        </div>
+        <p class="exp-org">Jazi Sportswear</p>
+        <ul class="exp-bullets">
+          <li>Managed social platforms by creating and publishing engaging content</li>
+          <li>Supported brand growth through digital promotions and customer engagement</li>
+          <li>Built strong customer relationships through online communication</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-head">
+          <h3 class="exp-role">Sales & Promotions Specialist</h3>
+          <span class="exp-date">Sep 2020 — Oct 2022</span>
+        </div>
+        <p class="exp-org">HUE Marketing · Blueband, Always, Nestlé</p>
+        <ul class="exp-bullets">
+          <li>Supported marketing campaigns and brand activations for major clients</li>
+          <li>Collected customer feedback to support campaign improvement</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Results</div>
+      <h2 class="section-title">Numbers from Fagi Errands, 2026.</h2>
+    </div>
+    <div class="results-grid">
+      <div class="result">
+        <div class="result-num">500%+</div>
+        <div class="result-label">Instagram follower growth</div>
+      </div>
+      <div class="result">
+        <div class="result-num">+27%</div>
+        <div class="result-label">Facebook follower growth</div>
+      </div>
+      <div class="result">
+        <div class="result-num">+23%</div>
+        <div class="result-label">TikTok follower growth</div>
+      </div>
+      <div class="result">
+        <div class="result-num">91%</div>
+        <div class="result-label">Increase in online sales</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Work</div>
+      <h2 class="section-title">Selected Instagram content.</h2>
+    </div>
+    <div class="work-grid">
+      <a class="work-item" href="https://www.instagram.com/p/Dc-8gK5iqPJ/" target="_blank" rel="noopener noreferrer">
+        <div class="work-thumb"><span class="work-tag">Post</span><span class="work-icon">✦</span></div>
+        <div class="work-meta"><h4>Post 01</h4><span>View →</span></div>
+      </a>
+      <a class="work-item" href="https://www.instagram.com/reel/Dctf7soKzHz/" target="_blank" rel="noopener noreferrer">
+        <div class="work-thumb"><span class="work-tag">Reel</span><span class="work-icon">▶</span></div>
+        <div class="work-meta"><h4>Reel 02</h4><span>View →</span></div>
+      </a>
+      <a class="work-item" href="https://www.instagram.com/p/DYXXZoKCvzD/" target="_blank" rel="noopener noreferrer">
+        <div class="work-thumb"><span class="work-tag">Post</span><span class="work-icon">✦</span></div>
+        <div class="work-meta"><h4>Post 03</h4><span>View →</span></div>
+      </a>
+      <a class="work-item" href="https://www.instagram.com/reel/DXZBepsCAT-/" target="_blank" rel="noopener noreferrer">
+        <div class="work-thumb"><span class="work-tag">Reel</span><span class="work-icon">▶</span></div>
+        <div class="work-meta"><h4>Reel 04</h4><span>View →</span></div>
+      </a>
+      <a class="work-item" href="https://www.instagram.com/p/DWl8zqiCASU/" target="_blank" rel="noopener noreferrer">
+        <div class="work-thumb"><span class="work-tag">Post</span><span class="work-icon">✦</span></div>
+        <div class="work-meta"><h4>Post 05</h4><span>View →</span></div>
+      </a>
+      <a class="work-item" href="https://www.instagram.com/reel/DWgQ3VOCPpa/" target="_blank" rel="noopener noreferrer">
+        <div class="work-thumb"><span class="work-tag">Reel</span><span class="work-icon">▶</span></div>
+        <div class="work-meta"><h4>Reel 06</h4><span>View →</span></div>
+      </a>
+      <a class="work-item" href="https://www.instagram.com/reel/DWoegZyiPyT/" target="_blank" rel="noopener noreferrer">
+        <div class="work-thumb"><span class="work-tag">Reel</span><span class="work-icon">▶</span></div>
+        <div class="work-meta"><h4>Reel 07</h4><span>View →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Skills</div>
+      <h2 class="section-title">What I bring to every brand.</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Strategy</h4>
+        <ul>
+          <li>Social media strategy</li>
+          <li>Campaign planning</li>
+          <li>Brand awareness</li>
+          <li>Analytics & reporting</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Content</h4>
+        <ul>
+          <li>Content creation</li>
+          <li>Copywriting</li>
+          <li>Content calendars</li>
+          <li>Canva</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Community</h4>
+        <ul>
+          <li>Community management</li>
+          <li>Customer engagement</li>
+          <li>Digital marketing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Education & References</div>
+      <h2 class="section-title">Background.</h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-item">
+        <h4>BA Psychology & International Relations</h4>
+        <p>University of Nairobi · 2021 — December 2024</p>
+      </div>
+      <div class="edu-item">
+        <h4>Kenya Certificate of Secondary Education</h4>
+        <p>Asumbi Girls High School · 2015 — 2018</p>
+      </div>
+    </div>
+    <div class="skill-group" style="margin-bottom:24px">
+      <h4>References</h4>
+    </div>
+    <div class="refs-grid">
+      <div class="ref-item">
+        <b>Winnie Kalawa</b><span>Marketing Manager, Hue Expeditions</span>
+        <a href="tel:+254707530124">+254 707 530 124</a>
+      </div>
+      <div class="ref-item">
+        <b>Lorraine Mzughula</b><span>HR, Kladika Company</span>
+        <a href="tel:+25472494724">+254 724 947 24</a>
+      </div>
+      <div class="ref-item">
+        <b>Merceline Erambo</b><span>Events & Outreach Coordinator, Jacaranda Maternity</span>
+        <a href="tel:+25472580262">+254 725 802 62</a>
+      </div>
+      <div class="ref-item">
+        <b>Eric Dala</b><span>Operations Manager, Fagi Errands Service Limited</span>
+        <a href="tel:+254704291657">+254 704 291 657</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <h2>Let's work <em>together</em>.</h2>
+    <p>Open to social media management and digital marketing roles. Tell me about your brand and goals.</p>
+    <div class="contact-links">
+      <a href="mailto:harrietowendy@gmail.com" class="contact-link">harrietowendy@gmail.com</a>
+      <a href="tel:+254797990411" class="contact-link">+254 797 990 411</a>
+    </div>
+    <p class="contact-meta">Nairobi, Kenya</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Harriet Awuor Omeny</p>
+  </div>
+</footer>
+
+<script>
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>10)});
+
+var sections=document.querySelectorAll('section[id]');
+var navLinks=document.querySelectorAll('.nav-links a');
+var observer=new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      var id=entry.target.id;
+      navLinks.forEach(function(link){link.classList.toggle('active',link.getAttribute('href')==='#'+id)});
+    }
+  });
+},{rootMargin:'-40% 0px -50% 0px'});
+sections.forEach(function(s){observer.observe(s)});
+
+var navToggle=document.getElementById('navToggle');
+var navLinksEl=document.getElementById('navLinks');
+navToggle.addEventListener('click',function(){navLinksEl.classList.toggle('open')});
+navLinksEl.querySelectorAll('a').forEach(function(link){link.addEventListener('click',function(){navLinksEl.classList.remove('open')})});
+</script>
+</body>
+</html>
